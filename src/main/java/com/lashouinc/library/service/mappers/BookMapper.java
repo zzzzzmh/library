@@ -1,5 +1,7 @@
 package com.lashouinc.library.service.mappers;
 
-public interface BookMapper {
+import com.lashouinc.library.service.domain.Book;
 
+public interface BookMapper {
+	int add(Book book);
 }

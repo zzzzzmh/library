@@ -14,7 +14,10 @@ public class Author implements Serializable {
 	private Timestamp addTime;
 	
 	public Author() {}
-
+	public Author(String name) {
+		this.authorName = name;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

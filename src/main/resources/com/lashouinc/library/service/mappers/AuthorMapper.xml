@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lashouinc.library.service.mappers.AuthorMapper">
+<select id="selectByName" parameterType="String" resultType="com.lashouinc.library.service.domain.Author">
+	select * from authors where author_name=#{name}
+</select>
+<select id="selectById"></select>
+<insert id="add" parameterType="com.lashouinc.library.service.domain.Author" useGeneratedKeys="true" keyProperty="id">
+insert into authors (author_name) values (#{authorName});
+</insert>
 </mapper>

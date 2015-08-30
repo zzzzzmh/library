@@ -16,7 +16,7 @@ public class Book implements Serializable {
 	private Integer categoryId;
 	private String authors;
 	private String translators;
-	private Date pubdate;
+	private String pubdate;
 	private String publisher;
 	private String img;
 	private String binding;
@@ -31,6 +31,9 @@ public class Book implements Serializable {
 	private Integer wanted;
 	private String tags;
 	private Timestamp addTime;
+	
+	public Book() {}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -79,11 +82,11 @@ public class Book implements Serializable {
 	public void setTranslators(String translators) {
 		this.translators = translators;
 	}
-	public Date getPubdate() {
+	public String getPubdate() {
 		return pubdate;
 	}
-	public void setPubdate(Date pubdate) {
-		this.pubdate = pubdate;
+	public void setPubdate(String string) {
+		this.pubdate = string;
 	}
 	public String getPublisher() {
 		return publisher;

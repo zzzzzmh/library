@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lashouinc.library.service.mappers.BookCatalogMapper">
+<select id="selectById"></select>
+<insert id="add" parameterType="com.lashouinc.library.service.domain.BookCatalog">
+	insert into book_catalog(book_id, catalog, summary) values (#{bookId}, #{catalog}, #{summary});
+</insert>
 </mapper>

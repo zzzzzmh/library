@@ -1,5 +1,8 @@
 package com.lashouinc.library.service.mappers;
 
-public interface BookCatalogMapper {
+import com.lashouinc.library.service.domain.BookCatalog;
 
+public interface BookCatalogMapper {
+	BookCatalogMapper selectById(Integer id);
+	int add(BookCatalog bookCatalog);
 }

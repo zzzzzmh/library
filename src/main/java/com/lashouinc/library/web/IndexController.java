@@ -1,19 +1,27 @@
 package com.lashouinc.library.web;
 
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.codehaus.jackson.type.TypeReference;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lashou.common.util.JsonUtil;
 import com.lashouinc.library.common.util.HttpClient;
+import com.lashouinc.library.service.BookService;
 import com.lashouinc.library.web.bean.BookInfoBean;
 import com.lashouinc.library.web.bean.BookInfoErrorBean;
 
 
 @Controller
 public class IndexController {
+	
+	@Resource
+	BookService bookService;
+	
 	//首页
 	@ResponseBody
 	@RequestMapping({"/", "/home"})
@@ -36,14 +44,8 @@ public class IndexController {
 		}
 		
 		if(infoBean != null) {
-			/**
-			 *  book
-			 *  book_authors
-			 *  book_catelog
-			 *  book_translators
-			 *  category
-			 *	authors
-			 */
+			int id = bookService.insertBook(infoBean);
+			System.out.println(id);
 		}
 	}
 	

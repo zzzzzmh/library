@@ -12,15 +12,16 @@ public class BookInfoBean implements Serializable {
 	private String bingding;
 	private String[] translator;
 	private String[] author;
-	private Tags[] tags;
-	private String catelog;
+	private BookInfoTagsBean[] tags;
+	private String catalog;
 	private Integer pages;
-	private Images images;
+	private BookInfoImagesBean images;
 	private String alt;
 	private Integer id;
 	private String publisher;
+	private String pubdate;
 	private String isbn10;
-	private String jsbn13;
+	private String isbn13;
 	private String title;
 	private String url;
 	private String alt_title;
@@ -86,22 +87,14 @@ public class BookInfoBean implements Serializable {
 		this.author = author;
 	}
 
-	public Tags[] getTags() {
+	public BookInfoTagsBean[] getTags() {
 		return tags;
 	}
 
-	public void setTags(Tags[] tags) {
+	public void setTags(BookInfoTagsBean[] tags) {
 		this.tags = tags;
 	}
-
-	public String getCatelog() {
-		return catelog;
-	}
-
-	public void setCatelog(String catelog) {
-		this.catelog = catelog;
-	}
-
+	
 	public Integer getPages() {
 		return pages;
 	}
@@ -110,11 +103,11 @@ public class BookInfoBean implements Serializable {
 		this.pages = pages;
 	}
 
-	public Images getImages() {
+	public BookInfoImagesBean getImages() {
 		return images;
 	}
 
-	public void setImages(Images images) {
+	public void setImages(BookInfoImagesBean images) {
 		this.images = images;
 	}
 
@@ -150,12 +143,12 @@ public class BookInfoBean implements Serializable {
 		this.isbn10 = isbn10;
 	}
 
-	public String getJsbn13() {
-		return jsbn13;
+	public String getIsbn13() {
+		return isbn13;
 	}
 
-	public void setJsbn13(String jsbn13) {
-		this.jsbn13 = jsbn13;
+	public void setIsbn13(String isbn13) {
+		this.isbn13 = isbn13;
 	}
 
 	public String getTitle() {
@@ -205,6 +198,22 @@ public class BookInfoBean implements Serializable {
 	public void setPrice(String price) {
 		this.price = price;
 	}
+
+	public String getPubdate() {
+		return pubdate;
+	}
+
+	public void setPubdate(String pubdate) {
+		this.pubdate = pubdate;
+	}
+
+	public String getCatalog() {
+		return catalog;
+	}
+
+	public void setCatalog(String catalog) {
+		this.catalog = catalog;
+	}
 }
 
 class Rating implements Serializable {
@@ -247,76 +256,6 @@ class Rating implements Serializable {
 
 	public void setMin(Integer min) {
 		this.min = min;
-	}
-	
-	
+	}	
 }
 
-class Tags implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	private Integer count;
-	private String name;
-	private String title;
-	
-	public Tags() {}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-}
-class Images implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	private String small;
-	private String large;
-	private String medium;
-	
-	public Images() {}
-
-	public String getSmall() {
-		return small;
-	}
-
-	public void setSmall(String small) {
-		this.small = small;
-	}
-
-	public String getLarge() {
-		return large;
-	}
-
-	public void setLarge(String large) {
-		this.large = large;
-	}
-
-	public String getMedium() {
-		return medium;
-	}
-
-	public void setMedium(String medium) {
-		this.medium = medium;
-	}
-	
-}
