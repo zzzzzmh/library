@@ -2,30 +2,23 @@ package com.lashouinc.library.common.aop;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component
-@Aspect
+//@Component
+
+//@Aspect
 public class DynamicDataSourceAOP {
 	
 	private Logger logger = LoggerFactory.getLogger(DynamicDataSourceAOP.class);
 
-	@Pointcut("execution(* com.lashouinc.library.service.mappers..*.*(..))")
+	//@Pointcut("execution(* com.lashouinc.library.service.mappers.*Mapper.*(..))")
 	public void inMapper() {
-
 	}
 	
 	/*
 	@Pointcut("execution(* com.lashou.oa.cms.service..*.*(..))")
 	public void inService() {
-
 	}
 	*/
 
@@ -34,7 +27,7 @@ public class DynamicDataSourceAOP {
 	 * 
 	 * @param jp
 	 */
-	@Before("inMapper()")
+	//@Before("inMapper()")
 	public void beforeInvoke(JoinPoint jp) {
 		String beanName = jp.getTarget().getClass().getName();
 		String methodName = jp.getSignature().getName();
@@ -43,8 +36,7 @@ public class DynamicDataSourceAOP {
 			if (n.startsWith("save") || n.startsWith("update")
 					|| n.startsWith("insert") || n.startsWith("del")
 					|| n.startsWith("remove")
-					|| n.startsWith("selectbyprimarykey")
-					|| n.startsWith("findbyid")) {
+					|| n.startsWith("selectbyprimarykey")) {
 				JdbcContextHolder.setCustomerType(JdbcContextHolder.master);
 			} else if ((n.startsWith("find") && !n.startsWith("findbyid"))
 					|| n.startsWith("count")
@@ -58,7 +50,7 @@ public class DynamicDataSourceAOP {
 		logger.debug("datasource aop 拦截 ，前置通知:class={},method={},ds={} ",beanName, methodName);
 	}
 
-	@After("inMapper()")
+	//@After("inMapper()")
 	public void afterReturnInvoke() {
 		JdbcContextHolder.clearCustomerType();
 	}

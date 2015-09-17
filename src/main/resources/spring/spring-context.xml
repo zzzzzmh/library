@@ -10,7 +10,8 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
-	<context:property-placeholder location="/WEB-INF/application.properties" />	
+	<!-- <context:property-placeholder location="/WEB-INF/application.properties" />  -->
+	<context:property-placeholder location="classpath:spring/application.properties" />
 	<context:component-scan base-package="com.lashouinc.library"/>
 	
 	<import resource="classpath:spring/spring-datasource.xml"/>
@@ -26,4 +27,37 @@
        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/> 
     </bean>
     
+    <aop:aspectj-autoproxy/>
+    <bean id="aspectDataSource" class="com.lashouinc.library.common.aop.DynamicDataSourceAOP"/>
+	<aop:config>
+		<aop:pointcut id="dynamicDataSourceCut" expression="execution(* com.lashouinc.library.service.mappers..*.*(..))"/>  
+	    <aop:aspect ref="aspectDataSource">  
+	        <aop:before pointcut-ref="dynamicDataSourceCut" method="beforeInvoke"/>  
+	        <aop:after pointcut-ref="dynamicDataSourceCut" method="afterReturnInvoke"/>  
+	    </aop:aspect>
+	</aop:config>
+	
+    <bean id="aspect" class="com.lashouinc.library.service.HelloWorldAspect"/>
+	<aop:config>
+		<aop:pointcut id="pointcut" expression="execution(* com.lashouinc.library.service.impl.*.*(..))"/>  
+	    <aop:aspect ref="aspect">  
+	        <aop:before pointcut-ref="pointcut" method="beforeAdvice"/>  
+	        <aop:after pointcut-ref="pointcut" method="afterFinallyAdvice"/>  
+	    </aop:aspect>  
+	</aop:config>
+	
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="false"/> 
+    <tx:advice id="txAdvice" transaction-manager="txManager">  
+    	<tx:attributes>
+	    <tx:method name="add" propagation="REQUIRED" isolation="READ_COMMITTED"/>
+	    <tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
+	    <tx:method name="find*" propagation="REQUIRED" isolation="READ_COMMITTED" read-only="true"/>  
+	    <tx:method name="select*" propagation="REQUIRED" isolation="READ_COMMITTED" read-only="true"/>  
+	    </tx:attributes>  
+	</tx:advice>
+	<aop:config>  
+	    <aop:pointcut id="serviceMethod" expression="execution(* com.lashouinc.library.service.impl.*.*(..))"/>  
+	    <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>  
+	</aop:config>
+	
 </beans>

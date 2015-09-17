@@ -10,7 +10,6 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
- 
  	<bean id="dataSource" class="com.lashouinc.library.common.aop.DynamicDataSource">
 		<property name="targetDataSources">
 			<map>
@@ -36,9 +35,19 @@
 	</bean>
 	
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>   
-    <tx:annotation-driven transaction-manager="txManager" />  
+    
     
     <!-- 
+     	<tx:method name="……"  
+         propagation=" REQUIRED"     事务传播行为定义
+         isolation="READ_COMMITTED"    事务隔离级别定义 TransactionDefinition.ISOLATION_DEFAULT
+         timeout="-1"    事务超时时间设置，单位为秒，默认-1，表示事务超时将依赖于底层事务系统
+         read-only="false"  事务只读设置，默认为false，表示不是只读
+         no-rollback-for=""   
+         rollback-for=""  需要触发回滚的异常定义
+     -->
+     
+    <!--
 	<context:annotation-config/>
 	<aop:aspectj-autoproxy />
 	<bean id="dynamicDataSourceAOP" class="com.lashou.oa.core.aop.datasource.DynamicDataSourceAOP" ></bean>

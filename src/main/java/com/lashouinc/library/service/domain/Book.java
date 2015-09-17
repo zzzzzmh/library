@@ -31,6 +31,8 @@ public class Book implements Serializable {
 	private Integer wanted;
 	private String tags;
 	private Timestamp addTime;
+	private Integer borrowNum;
+	private Timestamp borrowTime;
 	
 	public Book() {}
 	
@@ -171,5 +173,21 @@ public class Book implements Serializable {
 	}
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
+	}
+
+	public Integer getBorrowNum() {
+		return borrowNum;
+	}
+
+	public void setBorrowNum(Integer borrowNum) {
+		this.borrowNum = borrowNum;
+	}
+
+	public Timestamp getBorrowTime() {
+		return borrowTime;
+	}
+
+	public void setBorrowTime(Timestamp borrowTime) {
+		this.borrowTime = borrowTime;
 	}
 }
