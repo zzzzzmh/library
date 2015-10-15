@@ -1,10 +1,20 @@
 package com.lashouinc.library.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
+	
+	@ResponseBody
+	@RequestMapping("/index")
+	public String index() {
+		
+		return "admin index";
+	}
 	
 	//申请列表，要不要加审批流
 	public void applyList() {}

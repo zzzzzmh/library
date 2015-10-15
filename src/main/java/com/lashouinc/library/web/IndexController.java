@@ -2,11 +2,13 @@ package com.lashouinc.library.web;
 
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,10 @@ public class IndexController {
 	public void Index(
 			@RequestParam(value = "category", required = false) Integer category,
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page) {
+		
+		Subject subject = SecurityUtils.getSubject();
+		String username = (String)subject.getPrincipal();
+		System.out.println(username);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pageSize", 5);
@@ -78,7 +84,6 @@ public class IndexController {
 
 		System.out.println(result.getTotalCount());
 		System.out.println(result.getResult());
-
 	}
 
 	// 我的图书归还
