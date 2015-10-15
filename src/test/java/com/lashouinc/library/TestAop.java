@@ -57,14 +57,14 @@ public class TestAop {
 	
 	@Test
 	public void testRedis() {
-	
-		redisTemplate.boundHashOps("key");
-//		redisTemplate.set
-		//redisTemplate.opsForValue().set("jedis-key", "jedis-test3");
-		
-		redisTemplate.opsForValue().set("jedis-test-2", "jedis-test-2-value", 15, TimeUnit.SECONDS);
-		System.out.println(redisTemplate.opsForValue().get("jedis-test-2"));
-		
+//	
+//		redisTemplate.boundHashOps("key");
+////		redisTemplate.set
+//		//redisTemplate.opsForValue().set("jedis-key", "jedis-test3");
+//		
+//		redisTemplate.opsForValue().set("jedis-test-2", "jedis-test-2-value", 15, TimeUnit.SECONDS);
+//		System.out.println(redisTemplate.opsForValue().get("jedis-test-2"));
+//		
 		//redisTemplate.opsForHash().
 		//redisTemplate.delete("jedis-test-2");
 		
@@ -146,7 +146,7 @@ public class TestAop {
 	@Test
 	public void testBean() {
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring/spring-context.xml");  
+		//ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:spring/spring-context.xml");  
         //context.getBean("", requiredType)
 	}
 }
